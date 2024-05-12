@@ -22,6 +22,7 @@ const Items = (props) => {
                 <p>Product</p>
                 <p>Price</p>
                 <p>Edit</p>
+                <p>Quantity</p>
             </div>
             {ListItem}
         </div>
