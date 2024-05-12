@@ -3,6 +3,15 @@ import React from "react";
 const Items = (props) => {
   const { items, del, dec, inc } = props;
   let length = items.length;
+
+  const handleDecrease = (item) => {
+    if (item.quantity > 1) {
+      dec(item.id);
+    } else {
+      del(item.id);
+    }
+  };
+
   const ListItem = length ? (
     items.map((item) => {
       return (
@@ -13,7 +22,12 @@ const Items = (props) => {
             <p style={{ cursor: "pointer" }} onClick={() => inc(item.id)}>
               +
             </p>
-            <p style={{ cursor: "pointer" }} onClick={() => dec(item.id)}>-</p>
+            <p
+              style={{ cursor: "pointer" }}
+              onClick={() => handleDecrease(item)}
+            >
+              -
+            </p>
             <p className="delete" onClick={() => del(item.id)}>
               &times;
             </p>
