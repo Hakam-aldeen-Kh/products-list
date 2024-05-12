@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const AddItem = ({ add }) => {
   const [product, setProduct] = useState("");
   const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("1");
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -10,14 +11,21 @@ const AddItem = ({ add }) => {
       setProduct(value);
     } else if (id === "price") {
       setPrice(value);
+    } else if (id === "quantity") {
+      setQuantity(value);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    add({ product, price: parseFloat(price) });
+    add({
+      product,
+      price: parseFloat(price),
+      quantity: parseFloat(quantity),
+    });
     setProduct("");
     setPrice("");
+    setQuantity("1")
   };
 
   return (
@@ -36,6 +44,14 @@ const AddItem = ({ add }) => {
           value={price}
           placeholder="Enter Price"
           id="price"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="number"
+          value={quantity}
+          placeholder="Enter Quantity"
+          id="quantity"
           onChange={handleChange}
           required
         />

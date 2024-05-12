@@ -24,11 +24,38 @@ const App = () => {
     });
   };
 
+  const increaseItem = (id) => {
+    setItems((prevItems) => {
+      return prevItems.map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+    });
+  };
+
+  const decreaseItem = (id) => {
+    setItems((prevItems) => {
+      return prevItems.map((item) => {
+        if (item.id === id && item.quantity > 0) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      });
+    });
+  };
+
   return (
     <div className="container">
       <h1>Product List React App</h1>
       <div className="table">
-        <Items items={items} del={deleteItem} />
+        <Items
+          items={items}
+          del={deleteItem}
+          inc={increaseItem}
+          dec={decreaseItem}
+        />
         <AddItem add={addItem} />
         <Total items={items} />
       </div>
